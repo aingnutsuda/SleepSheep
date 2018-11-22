@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "852511987630",
+    "firebase_url": "https://sleepsheep-9258b.firebaseio.com",
+    "project_id": "sleepsheep-9258b",
+    "storage_bucket": "sleepsheep-9258b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852511987630:android:bab06be44c7aebd5",
+        "android_client_info": {
+          "package_name": "com.example.advice.sleepsheep"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852511987630-9ffcvd763mafneqos99ivp15pglvlure.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeDYOTYPk68VRr9S3_Fv60Lzzu9x-IBV0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

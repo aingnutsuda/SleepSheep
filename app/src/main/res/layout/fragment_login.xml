@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+                android:background="@drawable/bg"
+>
+
+    <com.google.android.gms.common.SignInButton
+            android:id="@+id/gmail_login_button"
+            android:layout_width="172dp"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true" android:layout_marginTop="125dp"/>
+    <TextView
+            android:text="Login"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/waffle_regular"
+            android:textSize="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true" android:layout_marginTop="8dp"/>
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="203dp" app:srcCompat="@drawable/sheep_run"
+            android:layout_alignParentEnd="true" android:layout_marginEnd="0dp" android:layout_alignParentBottom="true"
+            android:id="@+id/imageView" android:layout_marginBottom="0dp"/>
+
+</RelativeLayout>
