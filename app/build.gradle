@@ -6,7 +6,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.advice.sleepsheep"
-        minSdkVersion 26
+        minSdkVersion 22
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -16,6 +16,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
         }
     }
 }
@@ -36,13 +37,21 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
     //Firebase
-    implementation "com.google.firebase:firebase-core:16.0.4"
-    implementation "com.google.firebase:firebase-database:16.0.3"
-    implementation "com.google.firebase:firebase-config:16.0.1"
-    implementation "com.google.firebase:firebase-auth:16.0.4"
-    implementation "com.google.firebase:firebase-perf:16.1.2"
-    implementation "com.google.firebase:firebase-storage:16.0.3"
-    implementation "com.google.firebase:firebase-messaging:17.3.3"
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.firebase:firebase-database:16.0.3'
+    implementation 'com.google.firebase:firebase-config:16.0.1'
+    implementation 'com.google.firebase:firebase-auth:16.0.4'
+    implementation 'com.google.firebase:firebase-perf:16.1.2'
+    implementation 'com.google.firebase:firebase-storage:16.0.3'
+    implementation 'com.google.firebase:firebase-messaging:17.3.3'
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
+
+    //facebook
+    implementation 'com.facebook.android:facebook-core:[4,5)'
+    implementation 'com.facebook.android:facebook-login:[4,5)'
+    implementation 'com.facebook.android:facebook-share:[4,5)'
+    implementation 'com.facebook.android:facebook-places:[4,5)'
+    implementation 'com.facebook.android:facebook-messenger:[4,5)'
+    implementation 'com.facebook.android:facebook-applinks:[4,5)'
 }
 apply plugin: 'com.google.gms.google-services'

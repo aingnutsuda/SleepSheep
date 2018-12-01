@@ -78,20 +78,61 @@ class Login_fragment: Fragment() {
             Log.i(TAG, "Google Selected")
             signInGoogle()
         }
+        fb_login_button.setOnClickListener { view ->
+            Log.i(TAG, "Facebook Selected")
+            callbackManager = CallbackManager.Factory.create()
+            fb_login_button.setReadPermissions("email", "public_profile")
+            fb_login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+                override fun onSuccess(loginResult: LoginResult) {
+                    Log.d(TAG, "facebook:onSuccess:$loginResult")
+                    handleFacebookAccessToken(loginResult.accessToken)
+                }
+
+                override fun onCancel() {
+                    Log.d(TAG, "facebook:onCancel")
+                }
+
+                override fun onError(error: FacebookException) {
+                    Log.d(TAG, "facebook:onError", error)
+                }
+            })
+        }
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account = task.getResult(ApiException::class.java)
-                firebaseAuthWithGoogle(account!!)
-            } catch (e: ApiException) {
-                Log.w(TAG, "Google sign in failed", e)
-                updateUI(null)
+//        if (requestCode == RC_SIGN_IN) {
+//            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+//            try {
+//                val account = task.getResult(ApiException::class.java)
+//                firebaseAuthWithGoogle(account!!)
+//            } catch (e: ApiException) {
+//                Log.w(TAG, "Google sign in failed", e)
+//                updateUI(null)
+//            }
+//        } else {
+//            callbackManager!!.onActivityResult(requestCode, resultCode, data)
+//        }
+        callbackManager!!.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun handleFacebookAccessToken(token: AccessToken) {
+        Log.d(TAG, "handleFacebookAccessToken:$token")
+        val credential = FacebookAuthProvider.getCredential(token.token)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithCredential:success")
+                    val user = auth.currentUser
+                    updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    updateUI(null)
+                }
             }
-        }
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
@@ -127,6 +168,7 @@ class Login_fragment: Fragment() {
         if (user != null) {
             Log.d(TAG, "User Valid")
 
+
             val items = HashMap<String, Any>()
             items.put("id", user.uid)
             items.put("email", user.email.toString())
@@ -146,5 +188,6 @@ class Login_fragment: Fragment() {
             Log.d(TAG, "User Invalid")
         }
     }
+
 
 }
